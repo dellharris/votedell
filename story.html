@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Story Export — Dell Harris</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #222;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Scale wrapper so it fits any screen while keeping 1080x1920 */
+    .scale-wrap {
+      width: 1080px;
+      height: 1920px;
+      transform-origin: top center;
+      transform: scale(var(--s, 0.4));
+      margin: auto;
+    }
+
+    /* ── THE STORY CARD ── */
+    .story {
+      width: 1080px;
+      height: 1920px;
+      position: relative;
+      overflow: hidden;
+      background: #111;
+    }
+
+    /* full-bleed photo */
+    .photo {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 12%;
+    }
+
+    /* gradient layers */
+    .photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom,
+          rgba(0,0,0,0.45) 0%,
+          rgba(0,0,0,0.15) 20%,
+          rgba(0,0,0,0.1)  40%,
+          rgba(0,0,0,0.65) 58%,
+          rgba(0,0,0,0.92) 72%,
+          #111 88%
+        );
+    }
+
+    /* subtle red glow at feet */
+    .glow {
+      position: absolute;
+      bottom: 520px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(200,32,45,0.28) 0%, transparent 70%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* content sits above everything */
+    .content {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 80px 110px;
+    }
+
+    /* top badge */
+    .top-badge {
+      position: absolute;
+      top: 80px;
+      left: 80px;
+      background: #C8202D;
+      color: #fff;
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 14px 36px;
+      border-radius: 4px;
+    }
+
+    .tag {
+      font-size: 38px;
+      font-weight: 800;
+      color: #C8202D;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .vote-word {
+      font-size: 220px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.03em;
+      line-height: 0.88;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .name {
+      font-size: 110px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.02em;
+      line-height: 1.0;
+      text-transform: uppercase;
+      margin-bottom: 48px;
+    }
+
+    .name span { color: #C8202D; }
+
+    /* red divider */
+    .divider {
+      width: 120px;
+      height: 6px;
+      background: #C8202D;
+      margin-bottom: 48px;
+      border-radius: 3px;
+    }
+
+    .dates {
+      font-size: 58px;
+      font-weight: 900;
+      color: #C8202D;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .subtitle-line {
+      font-size: 36px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 60px;
+    }
+
+    /* url pill */
+    .url-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid rgba(255,255,255,0.25);
+      border-radius: 100px;
+      padding: 22px 48px;
+      width: fit-content;
+    }
+
+    .url-pill .dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #C8202D;
+      flex-shrink: 0;
+    }
+
+    .url-pill span {
+      font-size: 42px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.02em;
+    }
+  </style>
+</head>
+<body>
+<script>
+  // auto-scale to fit viewport height
+  const s = (window.innerHeight * 0.95) / 1920;
+  document.documentElement.style.setProperty('--s', s);
+  document.body.style.height = (1920 * s + 40) + 'px';
+</script>
+
+<div class="scale-wrap" id="card">
+  <div class="story">
+
+    <!-- photo background -->
+    <div class="photo">
+      <img src="images/family-hero.jpg" alt="Dell Harris with his family" />
+    </div>
+
+    <!-- red glow -->
+    <div class="glow"></div>
+
+    <!-- top badge -->
+    <div class="top-badge">Hope-Hill GO Team 2026</div>
+
+    <!-- main content -->
+    <div class="content">
+      <div class="tag">Jude Couch's Dad</div>
+      <div class="vote-word">Vote</div>
+      <div class="name"><span>Dell</span><br>Harris</div>
+      <div class="divider"></div>
+      <div class="dates">April 15 – 24</div>
+      <div class="subtitle-line">Hope-Hill Elementary · Parent Seat</div>
+      <div class="url-pill">
+        <div class="dot"></div>
+        <span>vote.dellharris.com</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

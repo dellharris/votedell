@@ -204,24 +204,34 @@
 
     @media (max-width: 640px) {
       .hero {
-        min-height: 580px;
+        min-height: 100svh;
         align-items: flex-end;
       }
-      .hero-photo-panel img { object-position: center 10%; }
+      .hero-photo-panel img {
+        object-position: center 8%;
+      }
+      /* transparent at top so faces show, dark only at bottom where text sits */
       .hero-photo-panel::before {
         background:
           linear-gradient(to bottom,
-            rgba(0,0,0,0.25) 0%,
-            rgba(0,0,0,0.15) 30%,
-            rgba(0,0,0,0.75) 65%,
-            rgba(0,0,0,0.97) 100%);
+            rgba(0,0,0,0.08) 0%,
+            rgba(0,0,0,0.05) 35%,
+            rgba(0,0,0,0.55) 58%,
+            rgba(0,0,0,0.92) 75%,
+            rgba(0,0,0,0.98) 100%);
       }
+      .hero-photo-panel::after { display: none; }
       .hero-text {
-        padding: 2rem 1.5rem 3rem;
+        padding: 1.5rem 1.5rem 2.5rem;
         max-width: 100%;
-        text-align: center;
+        text-align: left;
       }
-      .hero-ctas { justify-content: center; }
+      .hero h1 {
+        font-size: clamp(2.8rem, 12vw, 3.6rem);
+      }
+      .hero-ctas {
+        justify-content: flex-start;
+      }
     }
 
     /* ── BUTTONS ── */
