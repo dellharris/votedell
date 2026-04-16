@@ -208,30 +208,33 @@
         align-items: flex-end;
       }
       .hero-photo-panel img {
-        object-position: center 8%;
+        object-position: center 5%;
       }
-      /* transparent at top so faces show, dark only at bottom where text sits */
+      /* keep top totally clear, dark only in bottom 28% where text lives */
       .hero-photo-panel::before {
         background:
           linear-gradient(to bottom,
-            rgba(0,0,0,0.08) 0%,
-            rgba(0,0,0,0.05) 35%,
-            rgba(0,0,0,0.55) 58%,
-            rgba(0,0,0,0.92) 75%,
+            rgba(0,0,0,0.05) 0%,
+            rgba(0,0,0,0.0)  40%,
+            rgba(0,0,0,0.45) 65%,
+            rgba(0,0,0,0.90) 76%,
             rgba(0,0,0,0.98) 100%);
       }
       .hero-photo-panel::after { display: none; }
+      /* hide these on mobile to keep text block short */
+      .hero .subtitle,
+      .hero .school-tag { display: none; }
       .hero-text {
-        padding: 1.5rem 1.5rem 2.5rem;
+        padding: 1.25rem 1.5rem 2.25rem;
         max-width: 100%;
         text-align: left;
       }
       .hero h1 {
-        font-size: clamp(2.8rem, 12vw, 3.6rem);
+        font-size: clamp(2.6rem, 11vw, 3.4rem);
+        margin-bottom: 1.25rem;
       }
-      .hero-ctas {
-        justify-content: flex-start;
-      }
+      .hero-badge { margin-bottom: 0.75rem; }
+      .hero-ctas { justify-content: flex-start; }
     }
 
     /* ── BUTTONS ── */
