@@ -543,23 +543,22 @@
     footer p { margin-bottom: 0.3rem; }
     footer a { color: var(--red); text-decoration: none; font-weight: 600; }
 
-    /* ── CAMPAIGN VIDEO / RETRO TV ── */
-    #campaign-video {
-      background: #1a1a1a;
-      color: var(--white);
-      text-align: center;
+    /* ── FLOATING TV ── */
+    .tv-float {
+      position: fixed;
+      right: 3rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 200;
     }
 
-    #campaign-video .section-label { color: var(--red); }
-    #campaign-video h2 { color: var(--white); }
-
-    .tv-scene {
-      margin-top: 2.5rem;
-      display: flex;
-      justify-content: center;
+    .tv-float .tv-wrapper {
+      display: inline-block;
+      transform: scale(0.78);
+      transform-origin: right center;
     }
 
-    .tv-wrapper { display: inline-block; }
+    .tv-tab { display: none; }
 
     /* Antennas */
     .tv-antennas {
@@ -700,11 +699,49 @@
       box-shadow: 1px 4px 6px rgba(0,0,0,0.45);
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 768px) {
+      /* Compact TV for mobile float */
       .tv-screen { width: 220px; height: 324px; }
       .tv-body { gap: 12px; padding: 14px 14px 18px 16px; }
       .tv-antennas { gap: 64px; }
       .tv-stand { padding: 0 40px; }
+
+      /* Slide-in: hidden off-screen right, tab peeks out */
+      .tv-float {
+        right: -340px;
+        transform: translateY(-50%);
+        transition: right 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      .tv-float .tv-wrapper { transform: none; }
+      .tv-float.tv-open { right: 0; }
+
+      /* Pull tab — matches TV body style */
+      .tv-tab {
+        display: flex;
+        position: absolute;
+        left: -46px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 46px;
+        height: 74px;
+        background: linear-gradient(145deg, #e07828 0%, #c85810 55%, #a84208 100%);
+        border: none;
+        border-radius: 14px 0 0 14px;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        box-shadow:
+          -3px 2px 16px rgba(0,0,0,0.55),
+          inset 0 1px 2px rgba(255,255,255,0.15),
+          inset 0 -2px 4px rgba(0,0,0,0.3);
+        padding: 0;
+      }
+      .tv-tab svg {
+        transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      .tv-float.tv-open .tv-tab svg {
+        transform: rotate(180deg);
+      }
     }
   </style>
 </head>
@@ -836,45 +873,6 @@
     </div>
   </section>
 
-  <!-- CAMPAIGN VIDEO -->
-  <section id="campaign-video">
-    <div class="section-inner">
-      <div class="section-label">Campaign Video</div>
-      <h2>Watch Dell's Message</h2>
-      <div class="tv-scene">
-        <div class="tv-wrapper">
-          <div class="tv-antennas">
-            <div class="tv-antenna"></div>
-            <div class="tv-antenna"></div>
-          </div>
-          <div class="tv-body">
-            <div class="tv-screen-bezel">
-              <div class="tv-screen">
-                <iframe
-                  src="https://www.instagram.com/p/DXMX0mXERQE/embed/"
-                  frameborder="0"
-                  scrolling="no"
-                  allowtransparency="true"
-                  allow="encrypted-media"
-                  title="Dell Harris Campaign Video">
-                </iframe>
-              </div>
-            </div>
-            <div class="tv-controls">
-              <div class="tv-knob"></div>
-              <div class="tv-knob"></div>
-              <div class="tv-knob tv-knob-sm"></div>
-            </div>
-          </div>
-          <div class="tv-stand">
-            <div class="tv-leg"></div>
-            <div class="tv-leg"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- HOW TO VOTE -->
   <section id="vote">
     <div class="section-inner">
@@ -935,6 +933,53 @@
       <a href="https://resources.finalsite.net/images/v1775072964/atlantapublicschoolsus/pakbqiiwsyhw3os9seuc/Hope-Hill-Parents.pdf" target="_blank" rel="noopener">View Official Candidate Information (APS)</a>
     </p>
   </footer>
+  <!-- FLOATING TV -->
+  <div class="tv-float" id="tvFloat">
+    <button class="tv-tab" id="tvTab" aria-label="Watch campaign video">
+      <svg width="16" height="26" viewBox="0 0 16 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11 3L3 13L11 23" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="tv-wrapper">
+      <div class="tv-antennas">
+        <div class="tv-antenna"></div>
+        <div class="tv-antenna"></div>
+      </div>
+      <div class="tv-body">
+        <div class="tv-screen-bezel">
+          <div class="tv-screen">
+            <iframe
+              src="https://www.instagram.com/p/DXMX0mXERQE/embed/"
+              frameborder="0"
+              scrolling="no"
+              allowtransparency="true"
+              allow="encrypted-media"
+              title="Dell Harris Campaign Video">
+            </iframe>
+          </div>
+        </div>
+        <div class="tv-controls">
+          <div class="tv-knob"></div>
+          <div class="tv-knob"></div>
+          <div class="tv-knob tv-knob-sm"></div>
+        </div>
+      </div>
+      <div class="tv-stand">
+        <div class="tv-leg"></div>
+        <div class="tv-leg"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var tvFloat = document.getElementById('tvFloat');
+      var tvTab   = document.getElementById('tvTab');
+      tvTab.addEventListener('click', function () {
+        tvFloat.classList.toggle('tv-open');
+      });
+    })();
+  </script>
 
 </body>
 </html>
