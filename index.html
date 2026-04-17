@@ -545,12 +545,12 @@
 
     /* ── CAMPAIGN VIDEO / RETRO TV ── */
     #campaign-video {
-      background: linear-gradient(160deg, #0c2828 0%, #183830 100%);
+      background: #1a1a1a;
       color: var(--white);
       text-align: center;
     }
 
-    #campaign-video .section-label { color: #5dd9c4; }
+    #campaign-video .section-label { color: var(--red); }
     #campaign-video h2 { color: var(--white); }
 
     .tv-scene {
@@ -636,7 +636,8 @@
 
     .tv-screen iframe {
       width: 100%;
-      height: 100%;
+      height: calc(100% + 56px);
+      margin-top: -56px;
       border: none;
       display: block;
     }
