@@ -542,6 +542,169 @@
 
     footer p { margin-bottom: 0.3rem; }
     footer a { color: var(--red); text-decoration: none; font-weight: 600; }
+
+    /* ── CAMPAIGN VIDEO / RETRO TV ── */
+    #campaign-video {
+      background: linear-gradient(160deg, #0c2828 0%, #183830 100%);
+      color: var(--white);
+      text-align: center;
+    }
+
+    #campaign-video .section-label { color: #5dd9c4; }
+    #campaign-video h2 { color: var(--white); }
+
+    .tv-scene {
+      margin-top: 2.5rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .tv-wrapper { display: inline-block; }
+
+    /* Antennas */
+    .tv-antennas {
+      display: flex;
+      justify-content: center;
+      gap: 90px;
+      height: 65px;
+      align-items: flex-end;
+    }
+
+    .tv-antenna {
+      width: 5px;
+      height: 65px;
+      background: linear-gradient(to top, #962e06, #d06020);
+      border-radius: 3px 3px 0 0;
+      transform-origin: bottom center;
+      box-shadow: 1px 0 4px rgba(0,0,0,0.45);
+    }
+
+    .tv-antenna:first-child { transform: rotate(-22deg); }
+    .tv-antenna:last-child  { transform: rotate(22deg);  }
+
+    /* TV body */
+    .tv-body {
+      background: linear-gradient(145deg, #e07828 0%, #c85810 55%, #a84208 100%);
+      border-radius: 22px 22px 16px 16px;
+      padding: 18px 18px 22px 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow:
+        0 5px 0 #7a2c06,
+        0 9px 0 #561e04,
+        0 18px 44px rgba(0,0,0,0.7),
+        inset 0 2px 2px rgba(255,255,255,0.22),
+        inset 0 -3px 5px rgba(0,0,0,0.35);
+    }
+
+    /* Dark bezel around screen */
+    .tv-screen-bezel {
+      background: #0c0c0c;
+      border-radius: 12px;
+      padding: 10px;
+      box-shadow:
+        inset 0 3px 10px rgba(0,0,0,0.95),
+        inset 0 0 35px rgba(0,0,0,0.6);
+    }
+
+    /* Screen — Instagram iframe lives here */
+    .tv-screen {
+      width: 300px;
+      height: 440px;
+      border-radius: 7px;
+      overflow: hidden;
+      background: #0a0a0a;
+      position: relative;
+    }
+
+    /* Glass glare */
+    .tv-screen::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      border-radius: 7px;
+      background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.07) 0%,
+        rgba(255,255,255,0.01) 40%,
+        transparent 60%
+      );
+      pointer-events: none;
+    }
+
+    .tv-screen iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* Knobs */
+    .tv-controls {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding: 4px 0;
+      min-width: 44px;
+    }
+
+    .tv-knob {
+      width: 32px;
+      height: 32px;
+      background: radial-gradient(circle at 36% 33%, #3c3c3c 0%, #181818 55%, #050505 100%);
+      border-radius: 50%;
+      border: 2.5px solid #1a1a1a;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.7), inset 0 1px 1px rgba(255,255,255,0.06);
+      position: relative;
+    }
+
+    .tv-knob::after {
+      content: '';
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 9px;
+      background: #555;
+      border-radius: 2px;
+    }
+
+    .tv-knob-sm {
+      width: 22px;
+      height: 22px;
+    }
+
+    .tv-knob-sm::after {
+      top: 4px;
+      height: 6px;
+      width: 2px;
+    }
+
+    /* Legs */
+    .tv-stand {
+      display: flex;
+      justify-content: space-around;
+      padding: 0 55px;
+    }
+
+    .tv-leg {
+      width: 13px;
+      height: 30px;
+      background: linear-gradient(to bottom, #c05010 0%, #7c2c08 100%);
+      border-radius: 0 0 5px 5px;
+      box-shadow: 1px 4px 6px rgba(0,0,0,0.45);
+    }
+
+    @media (max-width: 480px) {
+      .tv-screen { width: 220px; height: 324px; }
+      .tv-body { gap: 12px; padding: 14px 14px 18px 16px; }
+      .tv-antennas { gap: 64px; }
+      .tv-stand { padding: 0 40px; }
+    }
   </style>
 </head>
 <body>
@@ -668,6 +831,45 @@
           Voting is open right now through April 24. Every Hope-Hill household gets one vote. It takes less than two minutes and makes a real difference for our kids.
         </p>
         <a href="#vote" class="btn-primary">Show Me How to Vote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAMPAIGN VIDEO -->
+  <section id="campaign-video">
+    <div class="section-inner">
+      <div class="section-label">Campaign Video</div>
+      <h2>Watch Dell's Message</h2>
+      <div class="tv-scene">
+        <div class="tv-wrapper">
+          <div class="tv-antennas">
+            <div class="tv-antenna"></div>
+            <div class="tv-antenna"></div>
+          </div>
+          <div class="tv-body">
+            <div class="tv-screen-bezel">
+              <div class="tv-screen">
+                <iframe
+                  src="https://www.instagram.com/p/DXMX0mXERQE/embed/"
+                  frameborder="0"
+                  scrolling="no"
+                  allowtransparency="true"
+                  allow="encrypted-media"
+                  title="Dell Harris Campaign Video">
+                </iframe>
+              </div>
+            </div>
+            <div class="tv-controls">
+              <div class="tv-knob"></div>
+              <div class="tv-knob"></div>
+              <div class="tv-knob tv-knob-sm"></div>
+            </div>
+          </div>
+          <div class="tv-stand">
+            <div class="tv-leg"></div>
+            <div class="tv-leg"></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
