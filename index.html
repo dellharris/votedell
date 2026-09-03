@@ -101,7 +101,7 @@
       z-index: 0;
     }
 
-    .hero-photo-panel img {
+    .hero-photo-panel video {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -729,10 +729,10 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-photo-panel">
-      <img
-        src="images/family-hero.jpg"
-        alt="Dell Harris with his family"
-      />
+      <video autoplay muted loop playsinline>
+        <source src="images/hero.mp4" type="video/mp4" />
+        <img src="images/family-hero.jpg" alt="Dell Harris with his family" />
+      </video>
     </div>
     <div class="hero-text">
       <div class="hero-badge">Hope-Hill GO Team · Parent/Guardian Representative</div>
